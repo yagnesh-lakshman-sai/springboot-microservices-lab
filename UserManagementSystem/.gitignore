@@ -1,0 +1,85 @@
+# ==========================
+# Maven
+# ==========================
+target/
+
+# ==========================
+# Java
+# ==========================
+*.class
+
+# ==========================
+# Log Files
+# ==========================
+*.log
+logs/
+
+# ==========================
+# Eclipse / Spring Tool Suite
+# ==========================
+.project
+.classpath
+.settings/
+.springBeans
+.sts4-cache/
+
+# ==========================
+# IntelliJ IDEA
+# ==========================
+.idea/
+*.iml
+out/
+
+# ==========================
+# Visual Studio Code
+# ==========================
+.vscode/
+
+# ==========================
+# NetBeans
+# ==========================
+nbproject/private/
+build/
+dist/
+nbdist/
+.nb-gradle/
+
+# ==========================
+# OS Generated Files
+# ==========================
+.DS_Store
+Thumbs.db
+
+# ==========================
+# Environment Files
+# ==========================
+.env
+.env.*
+
+# ==========================
+# Temporary Files
+# ==========================
+*.tmp
+*.bak
+*.swp
+
+# ==========================
+# H2 Database
+# ==========================
+*.mv.db
+*.trace.db
+
+# ==========================
+# Test Reports
+# ==========================
+surefire-reports/
+failsafe-reports/
+coverage/
+jacoco.exec
+
+# ==========================
+# Maven Wrapper JAR
+# (Ignore only if you don't want to commit it.
+# Usually KEEP it in Git.)
+# ==========================
+# .mvn/wrapper/maven-wrapper.jar
