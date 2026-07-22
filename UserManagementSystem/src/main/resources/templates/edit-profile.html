@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>User Registration</title>
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Bootstrap Icons -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+	<style>
+		body {
+			background: #f4f6f9;
+		}
+
+		.card {
+			border-radius: 15px;
+		}
+
+		.card-header {
+			border-radius: 15px 15px 0 0 !important;
+		}
+
+		.required {
+			color: red;
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<div class="container mt-5">
+
+		<div class="row justify-content-center">
+
+			<div class="col-lg-8">
+
+				<div class="card shadow-lg">
+
+					<div class="card-header bg-primary text-white text-center">
+
+						<h3>
+							<i class="bi bi-person-fill-add"></i>
+							User Registration
+						</h3>
+
+					</div>
+
+					<div class="card-body">
+						<div class="alert alert-success" th:if="${msg}" th:text="${msg}">
+
+						</div>
+						<form th:action="@{/profile/update}" th:object="${profile}" method="post">
+
+							<input type="hidden" th:field="*{userId}">
+
+							<!-- First Row -->
+
+							<div class="row">
+
+								<div class="col-md-6 mb-3">
+
+									<label class="form-label">
+										First Name
+										<div class="text-danger" th:errors="*{firstName}">
+
+										</div>
+										<span class="required">*</span>
+									</label>
+
+									<input type="text" class="form-control" th:field="*{firstName}">
+								</div>
+
+								<div class="col-md-6 mb-3">
+
+									<label class="form-label">
+										Last Name
+										<span class="required">*</span>
+									</label>
+
+									<input type="text" class="form-control" th:field="*{lastName}">
+
+								</div>
+
+							</div>
+
+							<!-- Second Row -->
+
+							<div class="row">
+
+								<div class="col-md-6 mb-3">
+
+									<label class="form-label">
+										Email
+										<div class="text-danger" th:errors="*{email}">
+
+										</div>
+										<span class="required">*</span>
+									</label>
+
+									<input type="email" class="form-control" th:field="*{email}" readonly>
+
+									<small id="emailMessage" class="text-danger">
+
+
+
+									</small>
+
+								</div>
+
+								<div class="col-md-6 mb-3">
+
+									<label class="form-label">
+										Phone Number
+										<div class="text-danger" th:errors="*{phone}">
+
+										</div>
+										<span class="required">*</span>
+									</label>
+
+									<input type="text" class="form-control" th:field="*{phone}">
+
+								</div>
+
+							</div>
+
+							<!-- Third Row -->
+
+							<div class="row">
+
+								<div class="col-md-6 mb-3">
+
+									<label class="form-label">
+										Date of Birth
+										<span class="required">*</span>
+									</label>
+
+									<input type="date" class="form-control" th:field="*{dob}">
+
+								</div>
+
+								<div class="col-md-6 mb-3">
+
+									<label class="form-label">
+										Gender
+										<span class="required">*</span>
+									</label>
+
+									<select class="form-select" th:field="*{gender}">
+
+										<option value="">
+											Select Gender
+										</option>
+
+										<option value="Male">
+											Male
+										</option>
+
+										<option value="Female">
+											Female
+										</option>
+
+										<option value="Other">
+											Other
+										</option>
+
+									</select>
+								</div>
+
+							</div>
+							<!-- Fourth Row -->
+
+							<div class="row">
+
+								<!-- Country -->
+
+								<div class="col-md-4 mb-3">
+
+									<label class="form-label">
+										Country
+										<span class="required">*</span>
+									</label>
+
+									<select id="country" class="form-select" th:field="*{countryId}">
+
+										<option value="">Select Country</option>
+
+										<option th:each="country : ${countries}" th:value="${country.countryId}"
+											th:text="${country.countryName}">
+										</option>
+
+									</select>
+
+								</div>
+
+								<!-- State -->
+
+								<div class="col-md-4 mb-3">
+
+									<label class="form-label">
+										State
+										<span class="required">*</span>
+									</label>
+
+									<select id="state" class="form-select" th:field="*{stateId}">
+
+										<option value="">Select State</option>
+
+										<option th:each="state : ${states}" th:value="${state.stateId}"
+											th:text="${state.stateName}">
+										</option>
+
+									</select>
+
+								</div>
+
+								<!-- City -->
+
+								<div class="col-md-4 mb-3">
+
+									<label class="form-label">
+										City
+										<span class="required">*</span>
+									</label>
+
+									<select id="city" class="form-select" th:field="*{cityId}">
+
+										<option value="">Select City</option>
+
+										<option th:each="city : ${cities}" th:value="${city.cityId}"
+											th:text="${city.cityName}">
+										</option>
+
+									</select>
+
+								</div>
+
+							</div>
+							<!-- Buttons -->
+
+							<div class="text-center mt-4">
+
+								<button type="submit" class="btn btn-primary">
+
+									<i class="bi bi-pencil-square"></i>
+
+									Update Profile
+
+								</button>
+
+								<a href="/dashboard" class="btn btn-secondary">
+
+									Back
+
+								</a>
+
+							</div>
+						</form>
+
+						<hr>
+
+						<div class="text-center">
+
+							<a href="/dashboard">
+
+								Back to Dashboard
+
+							</a>
+
+						</div>
+
+					</div>
+
+					<div class="card-footer text-center">
+
+						<small>
+
+							© 2026 User Management System
+
+						</small>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+	<script>
+
+		document
+			.getElementById("country")
+			.addEventListener("change", function () {
+
+				let countryId = this.value;
+
+				fetch("/states/" + countryId)
+
+					.then(response => response.json())
+
+					.then(data => {
+
+						let state = document.getElementById("state");
+
+						state.innerHTML = "<option value=''>Select State</option>";
+
+						data.forEach(function (item) {
+
+							state.innerHTML +=
+								"<option value='" + item.stateId + "'>"
+								+ item.stateName +
+								"</option>";
+
+						});
+
+					});
+
+			});
+
+		document
+			.getElementById("state")
+			.addEventListener("change", function () {
+
+				let stateId = this.value;
+
+				fetch("/cities/" + stateId)
+
+					.then(response => response.json())
+
+					.then(data => {
+
+						let city = document.getElementById("city");
+
+						city.innerHTML = "<option value=''>Select City</option>";
+
+						data.forEach(function (item) {
+
+							city.innerHTML +=
+								"<option value='" + item.cityId + "'>"
+								+ item.cityName +
+								"</option>";
+
+						});
+
+					});
+
+			});
+
+	</script>
+
+	<script>
+
+		document.getElementById("email").addEventListener("blur", function () {
+
+			let email = this.value;
+
+			if (email === "") {
+				return;
+			}
+
+			fetch("/check-email?email=" + encodeURIComponent(email))
+				.then(response => response.json())
+				.then(data => {
+
+					let msg = document.getElementById("emailMessage");
+
+					// Get Register Button
+					let btn = document.getElementById("registerBtn");
+
+					if (data) {
+
+						msg.innerHTML = "❌ Email already registered";
+						msg.className = "text-danger";
+
+						// Disable Register Button
+						btn.disabled = true;
+
+					} else {
+
+						msg.innerHTML = "✅ Email available";
+						msg.className = "text-success";
+
+						// Enable Register Button
+						btn.disabled = false;
+
+					}
+
+				});
+
+		});
+
+	</script>
+
+</body>
+
+</html>
